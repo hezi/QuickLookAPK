@@ -1,0 +1,319 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E799642E188D34C000BFAA22 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E799642D188D34C000BFAA22 /* QuickLook.framework */; };
+		E7996430188D34C000BFAA22 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E799642F188D34C000BFAA22 /* ApplicationServices.framework */; };
+		E7996432188D34C000BFAA22 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7996431188D34C000BFAA22 /* CoreServices.framework */; };
+		E7996434188D34C000BFAA22 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7996433188D34C000BFAA22 /* CoreFoundation.framework */; };
+		E799643A188D34C000BFAA22 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7996438188D34C000BFAA22 /* InfoPlist.strings */; };
+		E799643C188D34C000BFAA22 /* GenerateThumbnailForURL.c in Sources */ = {isa = PBXBuildFile; fileRef = E799643B188D34C000BFAA22 /* GenerateThumbnailForURL.c */; };
+		E799643E188D34C000BFAA22 /* GeneratePreviewForURL.c in Sources */ = {isa = PBXBuildFile; fileRef = E799643D188D34C000BFAA22 /* GeneratePreviewForURL.c */; };
+		E7996440188D34C000BFAA22 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = E799643F188D34C000BFAA22 /* main.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E799642A188D34C000BFAA22 /* QuickLookAPK.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickLookAPK.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		E799642D188D34C000BFAA22 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		E799642F188D34C000BFAA22 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		E7996431188D34C000BFAA22 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		E7996433188D34C000BFAA22 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		E7996437188D34C000BFAA22 /* QuickLookAPK-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QuickLookAPK-Info.plist"; sourceTree = "<group>"; };
+		E7996439188D34C000BFAA22 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E799643B188D34C000BFAA22 /* GenerateThumbnailForURL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GenerateThumbnailForURL.c; sourceTree = "<group>"; };
+		E799643D188D34C000BFAA22 /* GeneratePreviewForURL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GeneratePreviewForURL.c; sourceTree = "<group>"; };
+		E799643F188D34C000BFAA22 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		E7996441188D34C000BFAA22 /* QuickLookAPK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QuickLookAPK-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E7996425188D34C000BFAA22 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7996434188D34C000BFAA22 /* CoreFoundation.framework in Frameworks */,
+				E799642E188D34C000BFAA22 /* QuickLook.framework in Frameworks */,
+				E7996432188D34C000BFAA22 /* CoreServices.framework in Frameworks */,
+				E7996430188D34C000BFAA22 /* ApplicationServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E799641F188D34C000BFAA22 = {
+			isa = PBXGroup;
+			children = (
+				E7996435188D34C000BFAA22 /* QuickLookAPK */,
+				E799642C188D34C000BFAA22 /* Frameworks */,
+				E799642B188D34C000BFAA22 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E799642B188D34C000BFAA22 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E799642A188D34C000BFAA22 /* QuickLookAPK.qlgenerator */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E799642C188D34C000BFAA22 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E799642D188D34C000BFAA22 /* QuickLook.framework */,
+				E799642F188D34C000BFAA22 /* ApplicationServices.framework */,
+				E7996431188D34C000BFAA22 /* CoreServices.framework */,
+				E7996433188D34C000BFAA22 /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7996435188D34C000BFAA22 /* QuickLookAPK */ = {
+			isa = PBXGroup;
+			children = (
+				E799643B188D34C000BFAA22 /* GenerateThumbnailForURL.c */,
+				E799643D188D34C000BFAA22 /* GeneratePreviewForURL.c */,
+				E799643F188D34C000BFAA22 /* main.c */,
+				E7996436188D34C000BFAA22 /* Supporting Files */,
+			);
+			path = QuickLookAPK;
+			sourceTree = "<group>";
+		};
+		E7996436188D34C000BFAA22 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E7996437188D34C000BFAA22 /* QuickLookAPK-Info.plist */,
+				E7996438188D34C000BFAA22 /* InfoPlist.strings */,
+				E7996441188D34C000BFAA22 /* QuickLookAPK-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E7996426188D34C000BFAA22 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E7996429188D34C000BFAA22 /* QuickLookAPK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7996444188D34C000BFAA22 /* Build configuration list for PBXNativeTarget "QuickLookAPK" */;
+			buildPhases = (
+				E7996424188D34C000BFAA22 /* Sources */,
+				E7996425188D34C000BFAA22 /* Frameworks */,
+				E7996426188D34C000BFAA22 /* Headers */,
+				E7996427188D34C000BFAA22 /* Resources */,
+				E7996428188D34C000BFAA22 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickLookAPK;
+			productName = QuickLookAPK;
+			productReference = E799642A188D34C000BFAA22 /* QuickLookAPK.qlgenerator */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E7996420188D34C000BFAA22 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Hezi Cohen";
+			};
+			buildConfigurationList = E7996423188D34C000BFAA22 /* Build configuration list for PBXProject "QuickLookAPK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E799641F188D34C000BFAA22;
+			productRefGroup = E799642B188D34C000BFAA22 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E7996429188D34C000BFAA22 /* QuickLookAPK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E7996427188D34C000BFAA22 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E799643A188D34C000BFAA22 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		E7996428188D34C000BFAA22 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E7996424188D34C000BFAA22 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E799643C188D34C000BFAA22 /* GenerateThumbnailForURL.c in Sources */,
+				E799643E188D34C000BFAA22 /* GeneratePreviewForURL.c in Sources */,
+				E7996440188D34C000BFAA22 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E7996438188D34C000BFAA22 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7996439188D34C000BFAA22 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E7996442188D34C000BFAA22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E7996443188D34C000BFAA22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E7996445188D34C000BFAA22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuickLookAPK/QuickLookAPK-Prefix.pch";
+				INFOPLIST_FILE = "QuickLookAPK/QuickLookAPK-Info.plist";
+				INSTALL_PATH = /Library/QuickLook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = qlgenerator;
+			};
+			name = Debug;
+		};
+		E7996446188D34C000BFAA22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuickLookAPK/QuickLookAPK-Prefix.pch";
+				INFOPLIST_FILE = "QuickLookAPK/QuickLookAPK-Info.plist";
+				INSTALL_PATH = /Library/QuickLook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = qlgenerator;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E7996423188D34C000BFAA22 /* Build configuration list for PBXProject "QuickLookAPK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7996442188D34C000BFAA22 /* Debug */,
+				E7996443188D34C000BFAA22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7996444188D34C000BFAA22 /* Build configuration list for PBXNativeTarget "QuickLookAPK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7996445188D34C000BFAA22 /* Debug */,
+				E7996446188D34C000BFAA22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E7996420188D34C000BFAA22 /* Project object */;
+}
