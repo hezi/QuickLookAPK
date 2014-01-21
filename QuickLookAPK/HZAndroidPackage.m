@@ -32,7 +32,7 @@ NSData* dataFromZipPath(NSString* zipFile, NSString* pathInZip)
 
 NSString* androidPackageHTMLPreview(HZAndroidPackage *package)
 {
-    __block NSMutableString* stringBuilder = [NSMutableString string];
+    NSMutableString* stringBuilder = [NSMutableString string];
 
     NSString* iconBase64 = [package.iconData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     [stringBuilder appendFormat:@"<img title='%@' src='data:image/png;base64,%@'>", package.label, iconBase64];
