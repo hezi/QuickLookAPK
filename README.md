@@ -9,3 +9,6 @@ A Quick Look plugin for Android packages.
 
 ## Screenshot
 ![Screenshot](https://github.com/hezi/QuickLookAPK/raw/master/screenshot.png "Screenshot")
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hezi/quicklookapk/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
