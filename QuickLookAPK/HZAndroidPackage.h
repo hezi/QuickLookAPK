@@ -17,6 +17,7 @@
 @property(nonatomic) NSString* label;
 @property(nonatomic) NSString* iconPath;
 @property(nonatomic) NSData* iconData;
+@property(nonatomic) NSArray* permissions;
 
 + (instancetype)packageWithPath:(NSString*)path;
 

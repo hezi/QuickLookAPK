@@ -34,11 +34,17 @@ NSString* androidPackageHTMLPreview(HZAndroidPackage *package)
 {
     __block NSMutableString* stringBuilder = [NSMutableString string];
 
-    [stringBuilder appendFormat:@"<h1>%@ %@ (%@)</h1>", package.name, package.versionName, package.versionCode];
-    
     NSString* iconBase64 = [package.iconData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     [stringBuilder appendFormat:@"<img title='%@' src='data:image/png;base64,%@'>", package.label, iconBase64];
-
+    [stringBuilder appendFormat:@"<h1>%@ %@ (%@)</h1>", package.name, package.versionName, package.versionCode];
+    [stringBuilder appendString:@"<h2>Permissions:</h2><ul>"];
+    
+    for (NSString *permission in package.permissions) {
+        [stringBuilder appendFormat:@"<li>%@</li>", permission];
+    }
+    
+    [stringBuilder appendString:@"</ul>"];
+    
     return stringBuilder;
 }
 
@@ -96,6 +102,19 @@ NSString* androidPackageHTMLPreview(HZAndroidPackage *package)
          self.iconPath = [apkString substringWithRange:range];
          self.iconData = dataFromZipPath(self.path, self.iconPath);
      }];
+    
+    regex = [NSRegularExpression regularExpressionWithPattern:@"uses-permission:'(.*)'"
+                                                      options:0
+                                                        error:&error];
+    NSMutableArray *permissions = [NSMutableArray array];
+    [regex enumerateMatchesInString:apkString options:0 range:NSMakeRange(0, apkString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+     {
+         NSRange range = [result rangeAtIndex:1];
+         NSString *permission = [apkString substringWithRange:range];
+         [permissions addObject:permission];
+     }];
+
+    self.permissions = permissions;
 }
 
 @end
