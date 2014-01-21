@@ -1,6 +1,9 @@
-#include <CoreFoundation/CoreFoundation.h>
-#include <CoreServices/CoreServices.h>
-#include <QuickLook/QuickLook.h>
+#import <CoreFoundation/CoreFoundation.h>
+#import <CoreServices/CoreServices.h>
+#import <QuickLook/QuickLook.h>
+#import <Cocoa/Cocoa.h>
+
+#import "HZAndroidPackage.h"
 
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize);
 void CancelThumbnailGeneration(void *thisInterface, QLThumbnailRequestRef thumbnail);
@@ -13,7 +16,20 @@ void CancelThumbnailGeneration(void *thisInterface, QLThumbnailRequestRef thumbn
 
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize)
 {
-    // To complete your generator please implement the function GenerateThumbnailForURL in GenerateThumbnailForURL.c
+    NSURL* fileURL = (__bridge NSURL*)url;
+    if (![[fileURL pathExtension] isEqualToString:@"apk"]) {
+        return noErr;
+    }
+    
+    HZAndroidPackage *apk = [HZAndroidPackage packageWithPath:[fileURL path]];
+    
+    CFDataRef previewData = (__bridge CFDataRef)apk.iconData;
+    
+    if (previewData) {
+        CFDictionaryRef properties = (__bridge CFDictionaryRef)[NSDictionary dictionary];
+        QLThumbnailRequestSetImageWithData(thumbnail, previewData, properties);
+    }
+    
     return noErr;
 }
 

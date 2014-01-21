@@ -11,7 +11,7 @@
 			<string>QLGenerator</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>SUPPORTED_UTI_TYPE</string>
+				<string>dyn.ah62d4rv4ge80c6dp</string>
 			</array>
 		</dict>
 	</array>
@@ -20,7 +20,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.hezicohen.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.hezicohen.qlapk</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
