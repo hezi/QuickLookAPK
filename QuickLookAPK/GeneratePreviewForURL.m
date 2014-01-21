@@ -3,11 +3,7 @@
 #import <QuickLook/QuickLook.h>
 #import <Cocoa/Cocoa.h>
 
-
 #import "HZAndroidPackage.h"
-
-NSData* processAPK(NSURL* url);
-NSData* dataFromZipPath(NSString* zipFile, NSString* pathInZip);
 
 OSStatus GeneratePreviewForURL(void* thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options);
 void CancelPreviewGeneration(void* thisInterface, QLPreviewRequestRef preview);

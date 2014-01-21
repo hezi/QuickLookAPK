@@ -11,7 +11,7 @@
 NSDictionary* permissionsMap()
 {
     // Got it from: http://developer.android.com/reference/android/Manifest.permission.html
-    static NSDictionary *permissionsMap;
+    static NSDictionary* permissionsMap;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         permissionsMap =    @{@"ACCESS_CHECKIN_PROPERTIES":@"Allows read/write access to the \"properties\" table in the checkin database, to change values that get uploaded.",
@@ -160,7 +160,7 @@ NSDictionary* permissionsMap()
                               @"WRITE_SYNC_SETTINGS":@"Allows applications to write the sync settings",
                               @"WRITE_USER_DICTIONARY":@"Allows an application to write to the user dictionary."};
     });
-    
+
     return permissionsMap;
 }
 
@@ -169,46 +169,46 @@ NSData* dataFromZipPath(NSString* zipFile, NSString* pathInZip)
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:@"/usr/bin/unzip"];
     [task setArguments:[NSArray arrayWithObjects:@"-p", zipFile, pathInZip, nil]];
-    
+
     NSPipe* pipe;
     pipe = [NSPipe pipe];
     [task setStandardOutput:pipe];
-    
+
     NSFileHandle* file;
     file = [pipe fileHandleForReading];
-    
+
     [task launch];
-    [task waitUntilExit];
-    
+
     NSData* data;
     data = [file readDataToEndOfFile];
-    
+
     return data;
 }
 
 NSString* androidPackageHTMLPreview(HZAndroidPackage* package)
 {
     NSMutableString* stringBuilder = [NSMutableString string];
-    
+
     [stringBuilder appendString:@"<html><body style='font-family:sans-serif'>"];
     NSString* iconBase64 = [package.iconData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    [stringBuilder appendFormat:@"<img title='%@' src='data:image/png;base64,%@'>", package.label, iconBase64];
+    [stringBuilder appendFormat:@"<img style='width: 100px; height: 100px' title='%@' src='data:image/png;base64,%@'>", package.label, iconBase64];
     [stringBuilder appendFormat:@"<h1>%@</h1>", package.label];
     [stringBuilder appendFormat:@"<h2>%@ %@ (%@)</h2>", package.name, package.versionName, package.versionCode];
     [stringBuilder appendString:@"<h3>Permissions:</h3><ul>"];
-    
-    NSArray *sortedPermissions = [package.permissions sortedArrayUsingSelector: @selector(localizedCaseInsensitiveCompare:)];
-    
+
+    NSArray* sortedPermissions = [package.permissions sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+
     for (NSString* permission in sortedPermissions) {
-        NSString *key = [permission stringByReplacingOccurrencesOfString:@"android.permission." withString:@""];
-        NSString *description = permissionsMap()[key];
-        
-        if(description)
+        NSString* key = [permission stringByReplacingOccurrencesOfString:@"android.permission."
+                                                              withString:@""];
+        NSString* description = permissionsMap()[key];
+
+        if (description)
             [stringBuilder appendFormat:@"<li>%@:<br>%@</li><br>", permission, description];
         else
             [stringBuilder appendFormat:@"<li>%@</li><br>", permission];
     }
-    
+
     [stringBuilder appendString:@"</ul>"];
     [stringBuilder appendString:@"</body></html>"];
     return stringBuilder;
@@ -220,7 +220,7 @@ NSString* androidPackageHTMLPreview(HZAndroidPackage* package)
 {
     HZAndroidPackage* apk = [[HZAndroidPackage alloc] initWithPath:path];
     [apk load];
-    
+
     return apk;
 }
 
@@ -236,57 +236,57 @@ NSString* androidPackageHTMLPreview(HZAndroidPackage* package)
 - (void)load
 {
     NSString* aaptPath = [[[NSBundle bundleWithIdentifier:@"com.hezicohen.qlapk"] resourcePath] stringByAppendingPathComponent:@"aapt"];
-    
+
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:[aaptPath stringByExpandingTildeInPath]];
     [task setArguments:[NSArray arrayWithObjects:@"dump", @"badging", [self path], nil]];
-    
+
     NSPipe* readPipe = [NSPipe pipe];
     [task setStandardOutput:readPipe];
     [task launch];
-    
+
     NSData* apkData = [[readPipe fileHandleForReading] readDataToEndOfFile];
     NSString* apkString = [[NSString alloc] initWithData:apkData
                                                 encoding:NSUTF8StringEncoding];
-    
+
     NSError* error = nil;
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"package: name='(.*)' versionCode='(.*)' versionName='(.*)'"
                                                                            options:NSRegularExpressionCaseInsensitive
                                                                              error:&error];
-    
+
     [regex enumerateMatchesInString:apkString options:0 range:NSMakeRange(0, apkString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
-     {
-         NSRange range = [result rangeAtIndex:1];
-         self.name = [apkString substringWithRange:range];
-         range = [result rangeAtIndex:2];
-         self.versionCode = [apkString substringWithRange:range];
-         range = [result rangeAtIndex:3];
-         self.versionName = [apkString substringWithRange:range];
-     }];
-    
+    {
+        NSRange range = [result rangeAtIndex:1];
+        self.name = [apkString substringWithRange:range];
+        range = [result rangeAtIndex:2];
+        self.versionCode = [apkString substringWithRange:range];
+        range = [result rangeAtIndex:3];
+        self.versionName = [apkString substringWithRange:range];
+    }];
+
     regex = [NSRegularExpression regularExpressionWithPattern:@"application: label='(.*)' icon='(.*)'"
                                                       options:0
                                                         error:&error];
     [regex enumerateMatchesInString:apkString options:0 range:NSMakeRange(0, apkString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
-     {
-         NSRange range = [result rangeAtIndex:1];
-         self.label = [apkString substringWithRange:range];
-         range = [result rangeAtIndex:2];
-         self.iconPath = [apkString substringWithRange:range];
-         self.iconData = dataFromZipPath(self.path, self.iconPath);
-     }];
-    
+    {
+        NSRange range = [result rangeAtIndex:1];
+        self.label = [apkString substringWithRange:range];
+        range = [result rangeAtIndex:2];
+        self.iconPath = [apkString substringWithRange:range];
+        self.iconData = dataFromZipPath(self.path, self.iconPath);
+    }];
+
     regex = [NSRegularExpression regularExpressionWithPattern:@"uses-permission:'(.*)'"
                                                       options:0
                                                         error:&error];
     NSMutableArray* permissions = [NSMutableArray array];
     [regex enumerateMatchesInString:apkString options:0 range:NSMakeRange(0, apkString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
-     {
-         NSRange range = [result rangeAtIndex:1];
-         NSString* permission = [apkString substringWithRange:range];
-         [permissions addObject:permission];
-     }];
-    
+    {
+        NSRange range = [result rangeAtIndex:1];
+        NSString* permission = [apkString substringWithRange:range];
+        [permissions addObject:permission];
+    }];
+
     self.permissions = permissions;
 }
 
