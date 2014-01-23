@@ -16,20 +16,22 @@ void CancelThumbnailGeneration(void *thisInterface, QLThumbnailRequestRef thumbn
 
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize)
 {
-    NSURL* fileURL = (__bridge NSURL*)url;
-    if (![[fileURL pathExtension] isEqualToString:@"apk"]) {
+    NSURL *fileURL = (__bridge NSURL *)url;
+    if (![[fileURL pathExtension] isEqualToString:@"apk"])
+    {
         return noErr;
     }
-    
+
     HZAndroidPackage *apk = [HZAndroidPackage packageWithPath:[fileURL path]];
-    
+
     CFDataRef previewData = (__bridge CFDataRef)apk.iconData;
-    
-    if (previewData) {
+
+    if (previewData)
+    {
         CFDictionaryRef properties = (__bridge CFDictionaryRef)[NSDictionary dictionary];
         QLThumbnailRequestSetImageWithData(thumbnail, previewData, properties);
     }
-    
+
     return noErr;
 }
 

@@ -1,0 +1,8 @@
+BasedOnStyle:  WebKit
+ObjCSpaceBeforeProtocolList: true
+SpaceInEmptyParentheses: true
+SpaceBeforeParens: Never
+BreakBeforeBraces: Allman
+IndentCaseLabels: true
+AllowShortIfStatementsOnASingleLine: true
+PointerBindsToType: false

@@ -5,8 +5,8 @@
 
 #import "HZAndroidPackage.h"
 
-OSStatus GeneratePreviewForURL(void* thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options);
-void CancelPreviewGeneration(void* thisInterface, QLPreviewRequestRef preview);
+OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options);
+void CancelPreviewGeneration(void *thisInterface, QLPreviewRequestRef preview);
 
 /* -----------------------------------------------------------------------------
  Generate a preview for file
@@ -14,18 +14,20 @@ void CancelPreviewGeneration(void* thisInterface, QLPreviewRequestRef preview);
  This function's job is to create preview for designated file
  ----------------------------------------------------------------------------- */
 
-OSStatus GeneratePreviewForURL(void* thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options)
+OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options)
 {
-    NSURL* fileURL = (__bridge NSURL*)url;
-    if (![[fileURL pathExtension] isEqualToString:@"apk"]) {
+    NSURL *fileURL = (__bridge NSURL *)url;
+    if (![[fileURL pathExtension] isEqualToString:@"apk"])
+    {
         return noErr;
     }
 
     HZAndroidPackage *apk = [HZAndroidPackage packageWithPath:[fileURL path]];
-    
-    CFDataRef previewData = (__bridge CFDataRef)[androidPackageHTMLPreview(apk) dataUsingEncoding:NSUTF8StringEncoding];
 
-    if (previewData) {
+    CFDataRef previewData = (__bridge CFDataRef)[androidPackageHTMLPreview(apk) dataUsingEncoding : NSUTF8StringEncoding];
+
+    if (previewData)
+    {
         CFDictionaryRef properties = (__bridge CFDictionaryRef)[NSDictionary dictionary];
         QLPreviewRequestSetDataRepresentation(preview, previewData, kUTTypeHTML, properties);
     }
@@ -33,7 +35,7 @@ OSStatus GeneratePreviewForURL(void* thisInterface, QLPreviewRequestRef preview,
     return noErr;
 }
 
-void CancelPreviewGeneration(void* thisInterface, QLPreviewRequestRef preview)
+void CancelPreviewGeneration(void *thisInterface, QLPreviewRequestRef preview)
 {
     // Implement only if supported
 }
