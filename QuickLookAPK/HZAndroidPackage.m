@@ -267,17 +267,23 @@ NSString *androidPackageHTMLPreview(HZAndroidPackage *package)
         self.versionName = [apkString substringWithRange:range];
     }];
 
-    regex = [NSRegularExpression regularExpressionWithPattern:@"application: label='(.*)' icon='(.*)'"
+    regex = [NSRegularExpression regularExpressionWithPattern:@"application: label='(.*)' icon='.*'"
                                                       options:0
                                                         error:&error];
     [regex enumerateMatchesInString:apkString options:0 range:NSMakeRange(0, apkString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
     {
         NSRange range = [result rangeAtIndex:1];
         self.label = [apkString substringWithRange:range];
-        range = [result rangeAtIndex:2];
-        self.iconPath = [apkString substringWithRange:range];
-        self.iconData = dataFromZipPath(self.path, self.iconPath);
     }];
+    
+    regex = [NSRegularExpression regularExpressionWithPattern:@"application-icon-[\\d]+:'(.*)'"
+                                                      options:0
+                                                        error:&error];
+    NSArray *matches = [regex matchesInString:apkString options:0 range:NSMakeRange(0, apkString.length)];
+    NSTextCheckingResult *result = [matches lastObject];
+    NSRange range = [result rangeAtIndex:1];
+    self.iconPath = [apkString substringWithRange:range];
+    self.iconData = dataFromZipPath(self.path, self.iconPath);
 
     regex = [NSRegularExpression regularExpressionWithPattern:@"uses-permission:'(.*)'"
                                                       options:0
