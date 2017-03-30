@@ -201,22 +201,25 @@ NSString *androidPackageHTMLPreview(HZAndroidPackage *package)
         [stringBuilder appendFormat:@" (target %@)", package.targetSdkVersion];
     }
     
-    [stringBuilder appendString:@"</h3><h3>Permissions:</h3><ul>"];
-
-    NSArray *sortedPermissions = [package.permissions sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-
-    for (NSString *permission in sortedPermissions)
+    if ([package.permissions count] != 0)
     {
-        NSString *key = [permission stringByReplacingOccurrencesOfString:@"android.permission."
-                                                              withString:@""];
-        NSString *description = permissionsMap( )[key];
-        
-        [stringBuilder appendFormat:@"<li>%@", permission];
+        [stringBuilder appendString:@"</h3><h3>Permissions:</h3><ul>"];
 
-        if (description)
-            [stringBuilder appendFormat:@":<br>%@", description];
+        NSArray *sortedPermissions = [package.permissions sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+
+        for (NSString *permission in sortedPermissions)
+        {
+            NSString *key = [permission stringByReplacingOccurrencesOfString:@"android.permission."
+                                                                  withString:@""];
+            NSString *description = permissionsMap( )[key];
         
-        [stringBuilder appendString:@"</li><br>"];
+            [stringBuilder appendFormat:@"<li>%@", permission];
+
+            if (description)
+                [stringBuilder appendFormat:@":<br>%@", description];
+        
+            [stringBuilder appendString:@"</li><br>"];
+        }
     }
 
     [stringBuilder appendString:@"</ul></body></html>"];
