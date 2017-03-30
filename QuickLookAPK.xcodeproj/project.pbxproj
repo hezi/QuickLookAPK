@@ -312,6 +312,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickLookAPK/QuickLookAPK-Prefix.pch";
 				INFOPLIST_FILE = "QuickLookAPK/QuickLookAPK-Info.plist";

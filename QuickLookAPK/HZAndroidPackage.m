@@ -183,8 +183,7 @@ NSString *androidPackageHTMLPreview(HZAndroidPackage *package)
 {
     NSMutableString *stringBuilder = [NSMutableString string];
 
-    [stringBuilder appendString:@"<html><body style='font-family:sans-serif'>"];
-    [stringBuilder appendString:@"<h1>"];
+    [stringBuilder appendString:@"<html><body style='font-family:sans-serif'><h1>"];
     
     if(package.iconData.length != 0)
     {
@@ -192,12 +191,17 @@ NSString *androidPackageHTMLPreview(HZAndroidPackage *package)
         [stringBuilder appendFormat:@"<img style='width: 100px; height: 100px; vertical-align: middle;' title='%@' src='data:image/png;base64,%@'>  ", package.label, iconBase64];
     }
 
-    [stringBuilder appendFormat:@"%@", package.label];
-    [stringBuilder appendString:@"</h1>"];
+    [stringBuilder appendFormat:@"%@</h1>", package.label];
     [stringBuilder appendFormat:@"<h3>Package name: %@</h3>", package.name];
-    [stringBuilder appendFormat:@"<h3>Version: %@ (%@)</h3>", package.versionName, package.versionCode];
-    [stringBuilder appendFormat:@"<h3>SDK: %@ (target %@)</h3>", package.sdkVersion, package.targetSdkVersion];
-    [stringBuilder appendString:@"<h3>Permissions:</h3><ul>"];
+    [stringBuilder appendFormat:@"<h3>Version: %@ (%@)</h3><h3>", package.versionName, package.versionCode];
+    [stringBuilder appendFormat:@"SDK: %@", package.sdkVersion];
+    
+    if(package.targetSdkVersion != nil)
+    {
+        [stringBuilder appendFormat:@" (target %@)", package.targetSdkVersion];
+    }
+    
+    [stringBuilder appendString:@"</h3><h3>Permissions:</h3><ul>"];
 
     NSArray *sortedPermissions = [package.permissions sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 
@@ -206,15 +210,16 @@ NSString *androidPackageHTMLPreview(HZAndroidPackage *package)
         NSString *key = [permission stringByReplacingOccurrencesOfString:@"android.permission."
                                                               withString:@""];
         NSString *description = permissionsMap( )[key];
+        
+        [stringBuilder appendFormat:@"<li>%@", permission];
 
         if (description)
-            [stringBuilder appendFormat:@"<li>%@:<br>%@</li><br>", permission, description];
-        else
-            [stringBuilder appendFormat:@"<li>%@</li><br>", permission];
+            [stringBuilder appendFormat:@":<br>%@", description];
+        
+        [stringBuilder appendString:@"</li><br>"];
     }
 
-    [stringBuilder appendString:@"</ul>"];
-    [stringBuilder appendString:@"</body></html>"];
+    [stringBuilder appendString:@"</ul></body></html>"];
     return stringBuilder;
 }
 
