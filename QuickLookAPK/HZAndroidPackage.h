@@ -15,6 +15,8 @@
 @property(nonatomic) NSString *versionCode;
 @property(nonatomic) NSString *versionName;
 @property(nonatomic) NSString *label;
+@property(nonatomic) NSString *sdkVersion;
+@property(nonatomic) NSString *targetSdkVersion;
 @property(nonatomic) NSString *iconPath;
 @property(nonatomic) NSData *iconData;
 @property(nonatomic) NSArray *permissions;
