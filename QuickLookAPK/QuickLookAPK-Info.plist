@@ -12,6 +12,7 @@
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.android.package-archive</string>
+				<string>public.archive.apk</string>
 			</array>
 		</dict>
 	</array>
