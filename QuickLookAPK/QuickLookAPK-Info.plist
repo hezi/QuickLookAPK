@@ -7,12 +7,16 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>application/vnd.android.package-archive</string>
+			</array>
 			<key>CFBundleTypeRole</key>
 			<string>QLGenerator</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>dyn.ah62d4rv4ge80c6dp</string>
 				<string>com.android.package-archive</string>
+				<string>public.archive.apk</string>
 			</array>
 		</dict>
 	</array>
