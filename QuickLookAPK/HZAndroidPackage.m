@@ -183,7 +183,10 @@ NSString *androidPackageHTMLPreview(HZAndroidPackage *package)
 {
     NSMutableString *stringBuilder = [NSMutableString string];
 
-    [stringBuilder appendString:@"<html><body style='font-family:sans-serif'><h1>"];
+    [stringBuilder appendString:@"<!doctype html>"];
+    [stringBuilder appendString:@"<html>"];
+    [stringBuilder appendString:@"<head><meta charset='utf-8'><style>body {background: #fff; color: #000; font-family: system-ui, sans-serif;} @media (prefers-color-scheme: dark) { body {background: #323232; color: #fff;} }</style></head>"];
+    [stringBuilder appendString:@"<body><h1>"];
     
     if(package.iconData.length != 0)
     {
